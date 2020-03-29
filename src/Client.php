@@ -83,7 +83,7 @@ class Client
      *
      * @return ApnsResponseInterface[]
      */
-    public function push(): array
+    public function push($logger_callback = null): array
     {
         $responseCollection = [];
 
@@ -156,6 +156,11 @@ class Client
                     curl_multi_add_handle($mh, $this->prepareHandle($notification));
                 }
             }
+        }
+
+        if (is_callable($logger_callable)) {
+            $logger_callable('running: ' . $running);
+            $logger_callable('execrun: ' . $execrun);
         }
 
         if ($this->autoCloseConnections) {
