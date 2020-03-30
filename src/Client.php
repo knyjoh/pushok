@@ -83,7 +83,7 @@ class Client
      *
      * @return ApnsResponseInterface[]
      */
-    public function push($logger_callback = null): array
+    public function push($logger_callable = null): array
     {
         $responseCollection = [];
 
